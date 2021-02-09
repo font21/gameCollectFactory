@@ -10,6 +10,23 @@ import subprocess
 import os 
 import time
 import random
+from datetime import datetime
+
+#### Print Timers
+# now = datetime.now()
+# current_time = now.strftime("%H:%M:%S")
+# print("Program start time =", current_time)
+
+# endTime = current_time + 1
+# print("Approximate program end time (+1) =", current_time)
+# 
+# endTime = current_time + 10
+# print("Approximate program end time (+10) =", current_time)
+# 
+# endTime = current_time + 100
+# print("Approximate program end time (+100) =", current_time)
+
+
 
 # Wait a bit of time to switch over to the proper window and tab
 time.sleep(6)
@@ -52,12 +69,19 @@ def elvToolHitBox(elvShop):
 #### While loop to collect tools for one hour by looping a dozen times every five minutes
 l = 12
 while l > 0:
+    #### Time Stamp
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    print("Program start time =", current_time)
+    
     #### Produce
     # click on a random Workshop
-    randWait = random.randrange(1,3)
+    randWait = random.randrange(1,4)
+    print("Choosing workshop ", randWait, " to produce.")
     elvToolHitBox(randWait)
 
     # Click Select All Button in Pop up
+    print("Producing.")
     elvToolHitBox(5)
 
     # Click 5 minutes
@@ -65,6 +89,7 @@ while l > 0:
 
     # Hangout for about five to six minutes
     randWait = random.randrange(310,350)
+    print("Waiting for ", randWait, " seconds.")
     time.sleep(randWait)
 
     #### Collect Tools
@@ -73,4 +98,5 @@ while l > 0:
         randWait = random.randrange(2,4)
         elvToolHitBox(j)
         j -= 1
+    print("Collected Tools. Completed loop ", l, ".")
     l -= 1
